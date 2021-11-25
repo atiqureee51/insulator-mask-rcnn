@@ -32,8 +32,8 @@ except Exception:
     install_reqs = []
 
 setup(
-    name='mask-rcnn',
-    version='2.1',
+    name='insulator-mask-rcnn',
+    version='1.1',
     url='https://github.com/atiqureee51/insulator-mask-rcnn',
     author='Matterport',
     author_email='waleed.abdulla@gmail.com',
