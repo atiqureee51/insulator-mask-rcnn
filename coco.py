@@ -43,18 +43,24 @@ from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from pycocotools import mask as maskUtils
 
-from config import Config
-import utils
-#import model as modellib
+
 
 import zipfile
 import urllib.request
 import shutil
 
 
+ROOT_DIR = os.path.abspath("../../")
+# Import Mask RCNN
+sys.path.append(ROOT_DIR)  # To find local version of the library
+
+from mrcnn.config import Config
+from mrcnn import model as modellib, utils
+#import model as modellib
+
 #ROOT_DIR = '/root/Mask_RCNN'
 # Root directory of the project
-ROOT_DIR = os.path.abspath("../../")
+#ROOT_DIR = os.path.abspath("../../")
 
 # Import Mask RCNN
 #sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -116,16 +122,19 @@ class CocoDataset(utils.Dataset):
 
 
         # Path
-        image_dir = os.path.join(dataset_dir, "train" if subset == "train"
-                                 else "val")
+        #image_dir = os.path.join(dataset_dir, "train" if subset == "train"
+        #                        else "val")
         
-
+        image_dir = "{}/datasets/{}/images".format(dataset_dir, subset)
+        
+        
         # Create COCO object
-        json_path_dict = {
-            "train": "/content/drive/MyDrive/Colab Notebooks/Mask_RCNN/datasets/train/train_final_v1_coco.json",
-            "val": "/content/drive/MyDrive/Colab Notebooks/Mask_RCNN/datasets/val/labels_validation_coco_final_v1.json",
-            }
-        coco = COCO(os.path.join(dataset_dir, json_path_dict[subset]))
+        #json_path_dict = {
+        #    "train": "/content/drive/MyDrive/Colab Notebooks/Mask_RCNN/datasets/train/train_final_v1_coco.json",
+        #    "val": "/content/drive/MyDrive/Colab Notebooks/Mask_RCNN/datasets/val/labels_validation_coco_final_v1.json",
+        #    }
+        #coco = COCO(os.path.join(dataset_dir, json_path_dict[subset]))
+        coco = COCO("{}/datasets/{}/{}_final_v1_coco.json".format(dataset_dir, subset,subset))
 
         #/content/drive/MyDrive/Colab Notebooks/Mask_RCNN/datasets/train/labels_train_2021-11-22-03-21-14.json
         #"train": "/root/Mask_RCNN/datasets/train/labels_train_2021-11-22-03-21-14.json",
