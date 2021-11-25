@@ -9,5 +9,5 @@ tensorflow-gpu==1.14.0
 keras==2.0.8
 opencv-python
 h5py==2.10.0
-imgaug
+imgaug==0.2.5
 IPython[all]
