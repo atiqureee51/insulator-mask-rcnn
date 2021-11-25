@@ -19,7 +19,7 @@ This is an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870) on P
 ## Installation
 1. Clone this repository
     ```bash
-    !git clone https://github.com/matterport/Mask_RCNN.git
+    !git clone https://github.com/atiqureee51/insulator-mask-rcnn.git
 
     ```
 
@@ -30,8 +30,8 @@ This is an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870) on P
 3. Run setup from the repository root directory
     ```bash
     !python3 setup.py install
-    !cd Mask_RCNN
-    !pip show mask-rcnn
+    !cd insulator-mask-rcnn
+    !pip show insulator-mask-rcnn
     ``` 
 
 
