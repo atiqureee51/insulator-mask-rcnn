@@ -33,6 +33,11 @@ from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
+# dropout group norm, l2 weight
+#https://github.com/titu1994/Keras-Group-Normalization/blob/master/resnet_groupnorm.py
+#https://towardsdatascience.com/an-alternative-to-batch-normalization-2cee9051e8bc
+#https://academic.oup.com/jcde/article/8/4/1023/6304926
+
 
 ############################################################
 #  Utility Functions
@@ -106,6 +111,7 @@ def identity_block(input_tensor, kernel_size, filters, stage, block,
         block: 'a','b'..., current block label, used for generating layer names
         use_bias: Boolean. To use or not use a bias in conv layers.
         train_bn: Boolean. Train or freeze Batch Norm layers
+        keras.regularizers.l2(self.config.WEIGHT_DECAY)
     """
     nb_filter1, nb_filter2, nb_filter3 = filters
     conv_name_base = 'res' + str(stage) + block + '_branch'
@@ -114,11 +120,13 @@ def identity_block(input_tensor, kernel_size, filters, stage, block,
     x = KL.Conv2D(nb_filter1, (1, 1), name=conv_name_base + '2a',
                   use_bias=use_bias)(input_tensor)
     x = BatchNorm(name=bn_name_base + '2a')(x, training=train_bn)
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu')(x)
 
     x = KL.Conv2D(nb_filter2, (kernel_size, kernel_size), padding='same',
                   name=conv_name_base + '2b', use_bias=use_bias)(x)
     x = BatchNorm(name=bn_name_base + '2b')(x, training=train_bn)
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu')(x)
 
     x = KL.Conv2D(nb_filter3, (1, 1), name=conv_name_base + '2c',
@@ -126,6 +134,7 @@ def identity_block(input_tensor, kernel_size, filters, stage, block,
     x = BatchNorm(name=bn_name_base + '2c')(x, training=train_bn)
 
     x = KL.Add()([x, input_tensor])
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu', name='res' + str(stage) + block + '_out')(x)
     return x
 
@@ -151,11 +160,13 @@ def conv_block(input_tensor, kernel_size, filters, stage, block,
     x = KL.Conv2D(nb_filter1, (1, 1), strides=strides,
                   name=conv_name_base + '2a', use_bias=use_bias)(input_tensor)
     x = BatchNorm(name=bn_name_base + '2a')(x, training=train_bn)
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu')(x)
 
     x = KL.Conv2D(nb_filter2, (kernel_size, kernel_size), padding='same',
                   name=conv_name_base + '2b', use_bias=use_bias)(x)
     x = BatchNorm(name=bn_name_base + '2b')(x, training=train_bn)
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu')(x)
 
     x = KL.Conv2D(nb_filter3, (1, 1), name=conv_name_base +
@@ -167,6 +178,7 @@ def conv_block(input_tensor, kernel_size, filters, stage, block,
     shortcut = BatchNorm(name=bn_name_base + '1')(shortcut, training=train_bn)
 
     x = KL.Add()([x, shortcut])
+    x = KL.Dropout(0.2)(x)
     x = KL.Activation('relu', name='res' + str(stage) + block + '_out')(x)
     return x
 
