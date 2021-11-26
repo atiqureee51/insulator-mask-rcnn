@@ -28,6 +28,8 @@ This is an implementation of [Mask R-CNN](https://arxiv.org/abs/1703.06870) on P
    ```bash
    !pip uninstall -y tensorflow
    !pip3 install -r requirements.txt
+   !pip uninstall tensorboard-plugin-wit
+   !pip install -q tensorboard==1.14.0 
    ```
 3. Run setup from the repository root directory
     ```bash
