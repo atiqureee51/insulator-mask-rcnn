@@ -69,6 +69,7 @@ IMPORTANT TALKS:
 
 1. To make any annotation I have [makesense.ai] (https://www.makesense.ai/) is much more useful to annotate any object easily. For coco export, annotate using polygon and export in COCO, VGG JSON, VOC XML format etc. Though they doesn't store or save anything but it is handy when you want to change your train-test. Just upload the image files there of the new train set and import annotation of whole. It will just create annotation for the train set thre and you can export it.
 2.  for joining two coco files and merge together use the following [github link](https://github.com/mohamadmansourX/Merge_COCO_FILES).
+3.  All releases is in [here](https://github.com/atiqureee51/insulator-mask-rcnn/releases)
 
 
 
