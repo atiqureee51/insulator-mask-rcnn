@@ -61,6 +61,17 @@ print('Extracted zip file ' + fileName)
 %cd /content/insulator-mask-rcnn
 ```
 
+4. RUN the main ipynb file google colab. It will guide you to the whole process and will produce the output.
+5. The dataset has been collected from IEEE dataport in public domain [INSULATOR DEFECT DETECTION](https://ieee-dataport.org/competitions/insulator-defect-detection) And please cite them when you use. 
+
+####
+IMPORTANT TALKS:
+
+1. To make any annotation I have [makesense.ai] (https://www.makesense.ai/) is much more useful to annotate any object easily. For coco export, annotate using polygon and export in COCO, VGG JSON, VOC XML format etc. Though they doesn't store or save anything but it is handy when you want to change your train-test. Just upload the image files there of the new train set and import annotation of whole. It will just create annotation for the train set thre and you can export it.
+2.  for joining two coco files and merge together use the following [github link](https://github.com/mohamadmansourX/Merge_COCO_FILES).
+
+
+
 
 ## Citation
 Use this bibtex to cite this repository:
